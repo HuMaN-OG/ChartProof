@@ -12,6 +12,10 @@ ChartProof is a **revision-aware evidence review tool**, not a general-purpose c
 
 **Novelty scope:** this is an implementation-level contribution combining known OCR, NLP classification, constrained comparison and versioned audit techniques. Existing research such as ChartCheck already studies chart claim verification; this project does **not** claim to invent chart fact-checking or achieve general-purpose chart understanding. The narrow parser recognizes a small set of English, single-series percentage comparisons, while manual reviewer linking supports a wider phrasing range. The Azure integrations are optional and are not evidence of a completed paid-cloud evaluation.
 
+## Real-world data walkthrough
+
+For an authentic source-backed demonstration, see the [CBSE Class XII real-data guide](docs/real-data-demo.md). It includes a CSV transcribed from official published percentages, a reproducible chart generator (`python tools/real_data_demo.py`), genuine year-over-year claim checks, and a separately identified intentional transcription-error scenario that demonstrates an outdated claim without misrepresenting official statistics.
+
 ## Try the full workflow
 
 1. Start the web app with Docker.
