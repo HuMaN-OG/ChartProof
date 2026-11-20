@@ -6,6 +6,12 @@ ChartProof catches report sentences that have become inaccurate after a figure i
 
 ![Original placement chart with printed percentage labels](samples/original.png)
 
+## What is distinctive about ChartProof?
+
+ChartProof is a **revision-aware evidence review tool**, not a general-purpose chart-question answering model. Its tested contribution is the complete workflow: record the original chart and numerical claim, preserve source hashes and reviewer confirmations, replace the chart, replay the same arithmetic claim against the new evidence, classify the transition and export a restorable audit. The **revision impact trace** lists changed, added and removed year/value pairs, distinguishes a source-file hash change from a change in the displayed numbers, and indicates whether the specific years a claim references changed. A reviewer can inspect the formula for each verdict rather than trust an opaque score.
+
+**Novelty scope:** this is an implementation-level contribution combining known OCR, NLP classification, constrained comparison and versioned audit techniques. Existing research such as ChartCheck already studies chart claim verification; this project does **not** claim to invent chart fact-checking or achieve general-purpose chart understanding. The narrow parser recognizes a small set of English, single-series percentage comparisons, while manual reviewer linking supports a wider phrasing range. The Azure integrations are optional and are not evidence of a completed paid-cloud evaluation.
+
 ## Try the full workflow
 
 1. Start the web app with Docker.
@@ -15,7 +21,7 @@ ChartProof catches report sentences that have become inaccurate after a figure i
    docker run --rm -p 8000:8000 chartproof
    ```
 
-2. Open **http://localhost:8000**. The two sample images run through Tesseract. The original shows a 12-point rise and the revision an 8-point rise. Open **Inspect evidence** to see why “at least 10 percentage points” became inaccurate.
+2. Open **http://localhost:8000**. The two sample images run through Tesseract. The original shows a 12-point rise and the revision an 8-point rise. Open **Inspect evidence** to see the year/value revision impact and why “at least 10 percentage points” became inaccurate.
 3. Load **Redesigned chart** or **Missing year** to see how the same check handles a cosmetic change or a missing reference year.
 4. Use **Review / replace** to upload an image or a selected PDF page. Confirm the metric and values against the source. Add your sentence. For freer wording, use **Link a calculation** to confirm its interpretation. Automatic and reviewer-linked checks carry separate provenance.
 5. **Export audit** saves a JSON file containing both previews, source hashes, original readings, reviewed values, claim bindings and results. **Open audit** replays the checks. The current workspace also persists in this browser's local storage.

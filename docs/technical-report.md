@@ -6,6 +6,12 @@ A corrected chart can invalidate the prose around it. ChartProof binds a sentenc
 
 ChartCheck established a benchmark for fact-checking statements about individual real-world charts. ChartProof builds a revision-review workflow and tests whether it reacts differently to corrected values, cosmetic redesign and missing evidence. This is a project contribution. The study does not establish a first-in-literature claim. [Akhtar et al., ACL Findings 2024](https://aclanthology.org/2024.findings-acl.828/)
 
+## Revision impact trace
+
+Each claim-verification response includes `revision_impact`: numerical differences by four-digit year (added, removed or changed), a normalized metric-label change flag, a flag identifying whether any referenced claim year changed, and a source-file SHA-256 comparison when both hashes are available. Equally valued percentages are compared as decimals, avoiding false alerts caused only by numeric formatting such as `72` versus `72.00`. This evidence trace is diagnostic: it does not independently prove that two source figures have the same meaning. It can report unchanged values for redesigned charts while the exported audit still retains the original images and hashes. The six dedicated regression tests exercise value changes, cosmetic ordering/formatting, missing and added years, metric changes, unrelated-year changes, and changed file hashes.
+
+**Novelty boundary:** the project contributes a bounded, inspectable revision workflow and comparison evidence. It does not establish a novel underlying OCR architecture, a new foundation model or state-of-the-art chart fact-checking. The recorded 180 decisions come from constructed chart families and are not a general accuracy estimate for arbitrary report figures. The optional Azure connectors have offline protocol tests but no recorded live Azure evaluation.
+
 ## Implementation
 
 Tesseract reads the local image or selected PDF page. The local extractor associates printed year and percentage tokens along the category axis, proposes a metric and retains normalized bounding boxes. Azure Content Understanding offers a second extraction path through the prebuilt document-search analyzer. Uploaded figures always receive a human source check. Image previews, the source file digest, page, raw readings, and edited readings are retained in the browser audit.

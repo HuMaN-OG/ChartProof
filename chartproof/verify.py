@@ -150,6 +150,31 @@ def linked_claim(text, binding):
     return Check(text, op, metric_key(metric), tuple(years), operator, target, direction, label, score)
 
 
+
+def revision_impact(check, original, revision):
+    """Summarize differences in reviewed numerical evidence, not a semantic chart diff."""
+    old = {row["year"]: Decimal(str(row["value"])) for row in original["rows"]}
+    new = {row["year"]: Decimal(str(row["value"])) for row in revision["rows"]}
+    changes = []
+    for year in sorted(old.keys() | new.keys()):
+        before = old.get(year)
+        after = new.get(year)
+        if before == after:
+            continue
+        kind = "added" if before is None else "removed" if after is None else "changed"
+        changes.append({"year": year, "kind": kind,
+                        "before": None if before is None else fmt(before),
+                        "after": None if after is None else fmt(after)})
+    metric_changed = metric_key(original["metric"]) != metric_key(revision["metric"])
+    prior_digest = original.get("sha256")
+    next_digest = revision.get("sha256")
+    source_changed = (prior_digest != next_digest if prior_digest and next_digest else None)
+    claim_years = set(check.years)
+    return {"changes": changes, "metric_changed": metric_changed,
+            "claim_years_changed": bool(metric_changed or any(
+                entry["year"] in claim_years for entry in changes)),
+            "source_changed": source_changed}
+
 def compare(text, original, revision, binding=None):
     check = compile_claim(text) if binding is None else linked_claim(text, binding)
     before, after = verify(check, original), verify(check, revision)
@@ -163,4 +188,4 @@ def compare(text, original, revision, binding=None):
         transition = "Verdict changed"
     else:
         transition = "Verdict retained"
-    return {"claim": text, "binding_source": "Automatic" if binding is None else "Reviewer linked", "check": asdict(check), "before": before, "after": after, "transition": transition}
+    return {"claim": text, "binding_source": "Automatic" if binding is None else "Reviewer linked", "check": asdict(check), "before": before, "after": after, "transition": transition, "revision_impact": revision_impact(check, original, revision)}

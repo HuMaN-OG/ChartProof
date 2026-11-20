@@ -150,6 +150,20 @@ function resultRow(claim, i) {
     const grid = el("div", undefined, "proof");
     grid.append(proofSide("Original", result.before), proofSide("Revision", result.after));
     details.append(grid);
+    const impact = result.revision_impact;
+    if (impact) {
+      const changes = impact.changes.map(row => row.kind === "added"
+        ? row.year + ": added " + row.after + "%"
+        : row.kind === "removed" ? row.year + ": removed " + row.before + "%"
+          : row.year + ": " + row.before + "% → " + row.after + "%");
+      const summary = impact.metric_changed ? "Metric label changed. " : "";
+      const digest = impact.source_changed === true ? " Source file hash changed."
+        : impact.source_changed === false ? " Source file hash unchanged." : "";
+      const relevance = impact.claim_years_changed ? " Referenced evidence changed."
+        : " Referenced values unchanged.";
+      details.append(el("p", "Revision impact · " + summary +
+        (changes.join("; ") || "No year/value changes.") + relevance + digest));
+    }
     if (result.after.correction) details.append(el("p", "Suggested wording · " + result.after.correction));
     details.append(el("small", result.binding_source + " · model operation: " + result.check.model_label +
       " · check: " + result.check.operation + " · comparison uses printed values."));

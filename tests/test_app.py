@@ -78,6 +78,48 @@ class ProofTests(unittest.TestCase):
         [("2024", "87.98"), ("2025", "88.39")]))["status"], SUPPORTED)
 
 
+
+    def test_revision_impact(self):
+        impact = compare(TEXT, A, B)["revision_impact"]
+        self.assertEqual(impact["changes"], [
+            {"year": "2025", "kind": "changed", "before": "72", "after": "68"}])
+        self.assertTrue(impact["claim_years_changed"])
+        self.assertFalse(impact["metric_changed"])
+        self.assertIsNone(impact["source_changed"])
+
+    def test_redesign_does_not_change_reviewed_values(self):
+        impact = compare(TEXT, A, c([("2025", "72.00"), ("2024", "60")]))["revision_impact"]
+        self.assertEqual(impact["changes"], [])
+        self.assertFalse(impact["claim_years_changed"])
+
+    def test_added_and_missing_years(self):
+        removed = compare(TEXT, A, c([("2025", "72")]))["revision_impact"]
+        self.assertEqual(removed["changes"][0]["kind"], "removed")
+        self.assertTrue(removed["claim_years_changed"])
+        added = compare(TEXT, c([("2024", "60")]), A)["revision_impact"]
+        self.assertEqual(added["changes"][0]["kind"], "added")
+
+    def test_metric_change_is_visible(self):
+        impact = compare(TEXT, A, c([("2024", "60"), ("2025", "72")], "Employment rate"))["revision_impact"]
+        self.assertTrue(impact["metric_changed"])
+        self.assertTrue(impact["claim_years_changed"])
+
+    def test_unrelated_year_change_does_not_change_referenced_evidence(self):
+        one = c([("2023", "40"), ("2024", "60"), ("2025", "72")])
+        two = c([("2023", "50"), ("2024", "60"), ("2025", "72")])
+        impact = compare(TEXT, one, two)["revision_impact"]
+        self.assertEqual(impact["changes"][0]["year"], "2023")
+        self.assertFalse(impact["claim_years_changed"])
+
+    def test_source_hash_change_distinguished_from_number_change(self):
+        first = dict(A, sha256="a" * 64)
+        second = dict(A, sha256="b" * 64)
+        impact = compare(TEXT, first, second)["revision_impact"]
+        self.assertTrue(impact["source_changed"])
+        self.assertEqual(impact["changes"], [])
+        self.assertFalse(impact["claim_years_changed"])
+
+
 class WebTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls): cls.client = TestClient(app)
