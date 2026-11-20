@@ -2,7 +2,7 @@
 
 ChartProof catches report sentences that have become inaccurate after a figure is revised. It links each claim to a metric, years, units and calculation. An author can reopen the audit, replace a figure, and see exactly which conclusion needs editing.
 
-[Open the live workspace](https://chartproof-mu.vercel.app/) · [Download the public source archive](https://chartproof-mu.vercel.app/assets/ChartProof_Source.zip)
+[Open the live workspace](https://chartproof-mu.vercel.app/) · [GitHub Actions checks](https://github.com/HuMaN-OG/ChartProof/actions/workflows/ci.yml) · [Download the source](https://github.com/HuMaN-OG/ChartProof/archive/refs/heads/main.zip)
 
 ![Original placement chart with printed percentage labels](samples/original.png)
 

@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: chartproof
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    autoDeployTrigger: checksPass
+    envVars:
+      - key: OMP_THREAD_LIMIT
+        value: "1"

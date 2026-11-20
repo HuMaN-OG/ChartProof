@@ -1,0 +1,8 @@
+.venv/
+.env
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+evaluation/foundry-results.json
+web/ChartProof_Source.zip

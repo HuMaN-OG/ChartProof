@@ -1,0 +1,1637 @@
+{
+  "families": 12,
+  "images": 48,
+  "ocr_pairs_correct": 84,
+  "ocr_pairs_total": 84,
+  "ocr_extra": 0,
+  "stale_detected": 36,
+  "stale_total": 36,
+  "cosmetic_alerts": 0,
+  "cosmetic_total": 48,
+  "missing_recognized": 24,
+  "missing_total": 24,
+  "verdict_correct": 180,
+  "verdict_total": 180,
+  "persistence_correct": 120,
+  "false_approved": 0,
+  "false_claims": 36,
+  "answered": 120,
+  "answerable": 120,
+  "answerable_answered": 120,
+  "design": "Twelve constructed chart families, each with an original, corrected, reordered/recoloured and missing-year figure. Five frozen claim patterns per family. Evaluation runs OCR on pixels and uses no manual corrections. The official CBSE figures and low-resolution challenge are reported separately.",
+  "public_example": {
+    "source": "CBSE Class XII overall pass percentages, official 2024 and 2025 result releases. Chart redrawn for this project.",
+    "rows": [
+      {
+        "year": "2023",
+        "value": "87.33",
+        "box": [
+          0.1674,
+          0.2962,
+          0.1196,
+          0.0385
+        ]
+      },
+      {
+        "year": "2024",
+        "value": "87.98",
+        "box": [
+          0.4511,
+          0.2923,
+          0.1185,
+          0.0385
+        ]
+      },
+      {
+        "year": "2025",
+        "value": "88.39",
+        "box": [
+          0.7348,
+          0.2904,
+          0.1185,
+          0.0385
+        ]
+      }
+    ],
+    "claim": "CBSE pass rate rose by exactly 0.41 percentage points from 2024 to 2025.",
+    "verdict": "Supported"
+  },
+  "legibility_challenge": {
+    "labels_read": 0,
+    "metric_read": "CBSE pess rete",
+    "expected": "Insufficient evidence",
+    "verdict": "Insufficient evidence"
+  },
+  "language_evaluation": [
+    {
+      "expected": "lookup",
+      "phrase": "The response share was exactly 45% in 2007.",
+      "predicted": "lookup"
+    },
+    {
+      "expected": "lookup",
+      "phrase": "In 2017, the recovery rate reached 66 percent.",
+      "predicted": "lookup"
+    },
+    {
+      "expected": "lookup",
+      "phrase": "Renewal rate exceeded 23% in 2010.",
+      "predicted": "lookup"
+    },
+    {
+      "expected": "lookup",
+      "phrase": "Attendance stood at 75% in 2023.",
+      "predicted": "lookup"
+    },
+    {
+      "expected": "lookup",
+      "phrase": "In 2009, coverage measured 36%.",
+      "predicted": "lookup"
+    },
+    {
+      "expected": "lookup",
+      "phrase": "For 2012 the utilisation share equalled 29 percent.",
+      "predicted": "lookup"
+    },
+    {
+      "expected": "points",
+      "phrase": "The retention rate fell by 13 percentage points from 2017 to 2019.",
+      "predicted": "points"
+    },
+    {
+      "expected": "points",
+      "phrase": "The yield rose six percentage points across the interval.",
+      "predicted": "points"
+    },
+    {
+      "expected": "points",
+      "phrase": "The survey rate went down by 9 pp between 1993 and 1995.",
+      "predicted": "points"
+    },
+    {
+      "expected": "points",
+      "phrase": "Coverage gained at least 14 points from 2017 to 2020.",
+      "predicted": "points"
+    },
+    {
+      "expected": "points",
+      "phrase": "The approval rate climbed by 8 percentage points from 1995 to 1999.",
+      "predicted": "points"
+    },
+    {
+      "expected": "points",
+      "phrase": "The change was 1.3 percentage points over the three years.",
+      "predicted": "other"
+    },
+    {
+      "expected": "relative",
+      "phrase": "The intake rate grew by 30% from 2013 to 2014.",
+      "predicted": "relative"
+    },
+    {
+      "expected": "relative",
+      "phrase": "The occupancy share rose 35 percent relative to the first year.",
+      "predicted": "relative"
+    },
+    {
+      "expected": "relative",
+      "phrase": "The renewal rate fell by 11% between 1995 and 1998.",
+      "predicted": "relative"
+    },
+    {
+      "expected": "relative",
+      "phrase": "Relative growth in coverage equalled 26 percent.",
+      "predicted": "relative"
+    },
+    {
+      "expected": "relative",
+      "phrase": "The retrieval rate increased by at most 5% from 2004 to 2006.",
+      "predicted": "relative"
+    },
+    {
+      "expected": "relative",
+      "phrase": "Yield declined by 10% relative to 2011 in 2013.",
+      "predicted": "relative"
+    },
+    {
+      "expected": "other",
+      "phrase": "Did the new policy cause better outcomes?",
+      "predicted": "other"
+    },
+    {
+      "expected": "other",
+      "phrase": "Compare the number of graduates hired.",
+      "predicted": "other"
+    },
+    {
+      "expected": "other",
+      "phrase": "The data predict more activity next quarter.",
+      "predicted": "other"
+    },
+    {
+      "expected": "other",
+      "phrase": "Which option had the largest total?",
+      "predicted": "other"
+    },
+    {
+      "expected": "other",
+      "phrase": "The change was statistically significant.",
+      "predicted": "other"
+    },
+    {
+      "expected": "other",
+      "phrase": "The programme increased public trust.",
+      "predicted": "other"
+    }
+  ],
+  "language_correct": 23,
+  "language_total": 24,
+  "failures": [],
+  "cases": [
+    {
+      "family": 1,
+      "revision": "corrected",
+      "claim": "Graduation rate rose by at least 10 percentage points from 2000 to 2001.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 1,
+      "revision": "redesign",
+      "claim": "Graduation rate rose by at least 10 percentage points from 2000 to 2001.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 1,
+      "revision": "missing",
+      "claim": "Graduation rate rose by at least 10 percentage points from 2000 to 2001.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 1,
+      "revision": "corrected",
+      "claim": "Graduation rate grew by at least 18% from 2000 to 2001.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 1,
+      "revision": "redesign",
+      "claim": "Graduation rate grew by at least 18% from 2000 to 2001.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 1,
+      "revision": "missing",
+      "claim": "Graduation rate grew by at least 18% from 2000 to 2001.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 1,
+      "revision": "corrected",
+      "claim": "Graduation rate was at least 49% in 2001.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 1,
+      "revision": "redesign",
+      "claim": "Graduation rate was at least 49% in 2001.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 1,
+      "revision": "missing",
+      "claim": "Graduation rate was at least 49% in 2001.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 1,
+      "revision": "corrected",
+      "claim": "Graduation rate was above 20% in 2001.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 1,
+      "revision": "redesign",
+      "claim": "Graduation rate was above 20% in 2001.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 1,
+      "revision": "missing",
+      "claim": "Graduation rate was above 20% in 2001.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 1,
+      "revision": "corrected",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 1,
+      "revision": "redesign",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 1,
+      "revision": "missing",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 2,
+      "revision": "corrected",
+      "claim": "Retention rate rose by at least 10 percentage points from 2001 to 2002.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 2,
+      "revision": "redesign",
+      "claim": "Retention rate rose by at least 10 percentage points from 2001 to 2002.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 2,
+      "revision": "missing",
+      "claim": "Retention rate rose by at least 10 percentage points from 2001 to 2002.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 2,
+      "revision": "corrected",
+      "claim": "Retention rate grew by at least 18% from 2001 to 2002.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 2,
+      "revision": "redesign",
+      "claim": "Retention rate grew by at least 18% from 2001 to 2002.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 2,
+      "revision": "missing",
+      "claim": "Retention rate grew by at least 18% from 2001 to 2002.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 2,
+      "revision": "corrected",
+      "claim": "Retention rate was at least 51% in 2002.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 2,
+      "revision": "redesign",
+      "claim": "Retention rate was at least 51% in 2002.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 2,
+      "revision": "missing",
+      "claim": "Retention rate was at least 51% in 2002.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 2,
+      "revision": "corrected",
+      "claim": "Retention rate was above 20% in 2002.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 2,
+      "revision": "redesign",
+      "claim": "Retention rate was above 20% in 2002.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 2,
+      "revision": "missing",
+      "claim": "Retention rate was above 20% in 2002.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 2,
+      "revision": "corrected",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 2,
+      "revision": "redesign",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 2,
+      "revision": "missing",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 3,
+      "revision": "corrected",
+      "claim": "Recycling rate rose by at least 10 percentage points from 2002 to 2003.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 3,
+      "revision": "redesign",
+      "claim": "Recycling rate rose by at least 10 percentage points from 2002 to 2003.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 3,
+      "revision": "missing",
+      "claim": "Recycling rate rose by at least 10 percentage points from 2002 to 2003.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 3,
+      "revision": "corrected",
+      "claim": "Recycling rate grew by at least 18% from 2002 to 2003.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 3,
+      "revision": "redesign",
+      "claim": "Recycling rate grew by at least 18% from 2002 to 2003.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 3,
+      "revision": "missing",
+      "claim": "Recycling rate grew by at least 18% from 2002 to 2003.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 3,
+      "revision": "corrected",
+      "claim": "Recycling rate was at least 53% in 2003.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 3,
+      "revision": "redesign",
+      "claim": "Recycling rate was at least 53% in 2003.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 3,
+      "revision": "missing",
+      "claim": "Recycling rate was at least 53% in 2003.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 3,
+      "revision": "corrected",
+      "claim": "Recycling rate was above 20% in 2003.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 3,
+      "revision": "redesign",
+      "claim": "Recycling rate was above 20% in 2003.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 3,
+      "revision": "missing",
+      "claim": "Recycling rate was above 20% in 2003.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 3,
+      "revision": "corrected",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 3,
+      "revision": "redesign",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 3,
+      "revision": "missing",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 4,
+      "revision": "corrected",
+      "claim": "Renewal rate rose by at least 10 percentage points from 2003 to 2004.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 4,
+      "revision": "redesign",
+      "claim": "Renewal rate rose by at least 10 percentage points from 2003 to 2004.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 4,
+      "revision": "missing",
+      "claim": "Renewal rate rose by at least 10 percentage points from 2003 to 2004.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 4,
+      "revision": "corrected",
+      "claim": "Renewal rate grew by at least 18% from 2003 to 2004.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 4,
+      "revision": "redesign",
+      "claim": "Renewal rate grew by at least 18% from 2003 to 2004.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 4,
+      "revision": "missing",
+      "claim": "Renewal rate grew by at least 18% from 2003 to 2004.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 4,
+      "revision": "corrected",
+      "claim": "Renewal rate was at least 55% in 2004.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 4,
+      "revision": "redesign",
+      "claim": "Renewal rate was at least 55% in 2004.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 4,
+      "revision": "missing",
+      "claim": "Renewal rate was at least 55% in 2004.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 4,
+      "revision": "corrected",
+      "claim": "Renewal rate was above 20% in 2004.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 4,
+      "revision": "redesign",
+      "claim": "Renewal rate was above 20% in 2004.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 4,
+      "revision": "missing",
+      "claim": "Renewal rate was above 20% in 2004.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 4,
+      "revision": "corrected",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 4,
+      "revision": "redesign",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 4,
+      "revision": "missing",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 5,
+      "revision": "corrected",
+      "claim": "Delivery rate rose by at least 10 percentage points from 2004 to 2005.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 5,
+      "revision": "redesign",
+      "claim": "Delivery rate rose by at least 10 percentage points from 2004 to 2005.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 5,
+      "revision": "missing",
+      "claim": "Delivery rate rose by at least 10 percentage points from 2004 to 2005.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 5,
+      "revision": "corrected",
+      "claim": "Delivery rate grew by at least 18% from 2004 to 2005.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 5,
+      "revision": "redesign",
+      "claim": "Delivery rate grew by at least 18% from 2004 to 2005.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 5,
+      "revision": "missing",
+      "claim": "Delivery rate grew by at least 18% from 2004 to 2005.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 5,
+      "revision": "corrected",
+      "claim": "Delivery rate was at least 57% in 2005.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 5,
+      "revision": "redesign",
+      "claim": "Delivery rate was at least 57% in 2005.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 5,
+      "revision": "missing",
+      "claim": "Delivery rate was at least 57% in 2005.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 5,
+      "revision": "corrected",
+      "claim": "Delivery rate was above 20% in 2005.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 5,
+      "revision": "redesign",
+      "claim": "Delivery rate was above 20% in 2005.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 5,
+      "revision": "missing",
+      "claim": "Delivery rate was above 20% in 2005.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 5,
+      "revision": "corrected",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 5,
+      "revision": "redesign",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 5,
+      "revision": "missing",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 6,
+      "revision": "corrected",
+      "claim": "Pass rate rose by at least 10 percentage points from 2005 to 2006.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 6,
+      "revision": "redesign",
+      "claim": "Pass rate rose by at least 10 percentage points from 2005 to 2006.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 6,
+      "revision": "missing",
+      "claim": "Pass rate rose by at least 10 percentage points from 2005 to 2006.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 6,
+      "revision": "corrected",
+      "claim": "Pass rate grew by at least 18% from 2005 to 2006.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 6,
+      "revision": "redesign",
+      "claim": "Pass rate grew by at least 18% from 2005 to 2006.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 6,
+      "revision": "missing",
+      "claim": "Pass rate grew by at least 18% from 2005 to 2006.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 6,
+      "revision": "corrected",
+      "claim": "Pass rate was at least 59% in 2006.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 6,
+      "revision": "redesign",
+      "claim": "Pass rate was at least 59% in 2006.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 6,
+      "revision": "missing",
+      "claim": "Pass rate was at least 59% in 2006.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 6,
+      "revision": "corrected",
+      "claim": "Pass rate was above 20% in 2006.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 6,
+      "revision": "redesign",
+      "claim": "Pass rate was above 20% in 2006.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 6,
+      "revision": "missing",
+      "claim": "Pass rate was above 20% in 2006.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 6,
+      "revision": "corrected",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 6,
+      "revision": "redesign",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 6,
+      "revision": "missing",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 7,
+      "revision": "corrected",
+      "claim": "Response rate rose by at least 10 percentage points from 2006 to 2007.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 7,
+      "revision": "redesign",
+      "claim": "Response rate rose by at least 10 percentage points from 2006 to 2007.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 7,
+      "revision": "missing",
+      "claim": "Response rate rose by at least 10 percentage points from 2006 to 2007.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 7,
+      "revision": "corrected",
+      "claim": "Response rate grew by at least 18% from 2006 to 2007.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 7,
+      "revision": "redesign",
+      "claim": "Response rate grew by at least 18% from 2006 to 2007.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 7,
+      "revision": "missing",
+      "claim": "Response rate grew by at least 18% from 2006 to 2007.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 7,
+      "revision": "corrected",
+      "claim": "Response rate was at least 61% in 2007.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 7,
+      "revision": "redesign",
+      "claim": "Response rate was at least 61% in 2007.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 7,
+      "revision": "missing",
+      "claim": "Response rate was at least 61% in 2007.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 7,
+      "revision": "corrected",
+      "claim": "Response rate was above 20% in 2007.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 7,
+      "revision": "redesign",
+      "claim": "Response rate was above 20% in 2007.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 7,
+      "revision": "missing",
+      "claim": "Response rate was above 20% in 2007.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 7,
+      "revision": "corrected",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 7,
+      "revision": "redesign",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 7,
+      "revision": "missing",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 8,
+      "revision": "corrected",
+      "claim": "Acceptance rate rose by at least 10 percentage points from 2007 to 2008.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 8,
+      "revision": "redesign",
+      "claim": "Acceptance rate rose by at least 10 percentage points from 2007 to 2008.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 8,
+      "revision": "missing",
+      "claim": "Acceptance rate rose by at least 10 percentage points from 2007 to 2008.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 8,
+      "revision": "corrected",
+      "claim": "Acceptance rate grew by at least 18% from 2007 to 2008.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 8,
+      "revision": "redesign",
+      "claim": "Acceptance rate grew by at least 18% from 2007 to 2008.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 8,
+      "revision": "missing",
+      "claim": "Acceptance rate grew by at least 18% from 2007 to 2008.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 8,
+      "revision": "corrected",
+      "claim": "Acceptance rate was at least 63% in 2008.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 8,
+      "revision": "redesign",
+      "claim": "Acceptance rate was at least 63% in 2008.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 8,
+      "revision": "missing",
+      "claim": "Acceptance rate was at least 63% in 2008.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 8,
+      "revision": "corrected",
+      "claim": "Acceptance rate was above 20% in 2008.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 8,
+      "revision": "redesign",
+      "claim": "Acceptance rate was above 20% in 2008.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 8,
+      "revision": "missing",
+      "claim": "Acceptance rate was above 20% in 2008.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 8,
+      "revision": "corrected",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 8,
+      "revision": "redesign",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 8,
+      "revision": "missing",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 9,
+      "revision": "corrected",
+      "claim": "Adoption rate rose by at least 10 percentage points from 2008 to 2009.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 9,
+      "revision": "redesign",
+      "claim": "Adoption rate rose by at least 10 percentage points from 2008 to 2009.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 9,
+      "revision": "missing",
+      "claim": "Adoption rate rose by at least 10 percentage points from 2008 to 2009.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 9,
+      "revision": "corrected",
+      "claim": "Adoption rate grew by at least 18% from 2008 to 2009.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 9,
+      "revision": "redesign",
+      "claim": "Adoption rate grew by at least 18% from 2008 to 2009.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 9,
+      "revision": "missing",
+      "claim": "Adoption rate grew by at least 18% from 2008 to 2009.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 9,
+      "revision": "corrected",
+      "claim": "Adoption rate was at least 65% in 2009.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 9,
+      "revision": "redesign",
+      "claim": "Adoption rate was at least 65% in 2009.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 9,
+      "revision": "missing",
+      "claim": "Adoption rate was at least 65% in 2009.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 9,
+      "revision": "corrected",
+      "claim": "Adoption rate was above 20% in 2009.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 9,
+      "revision": "redesign",
+      "claim": "Adoption rate was above 20% in 2009.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 9,
+      "revision": "missing",
+      "claim": "Adoption rate was above 20% in 2009.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 9,
+      "revision": "corrected",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 9,
+      "revision": "redesign",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 9,
+      "revision": "missing",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 10,
+      "revision": "corrected",
+      "claim": "Completion rate rose by at least 10 percentage points from 2009 to 2010.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 10,
+      "revision": "redesign",
+      "claim": "Completion rate rose by at least 10 percentage points from 2009 to 2010.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 10,
+      "revision": "missing",
+      "claim": "Completion rate rose by at least 10 percentage points from 2009 to 2010.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 10,
+      "revision": "corrected",
+      "claim": "Completion rate grew by at least 18% from 2009 to 2010.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 10,
+      "revision": "redesign",
+      "claim": "Completion rate grew by at least 18% from 2009 to 2010.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 10,
+      "revision": "missing",
+      "claim": "Completion rate grew by at least 18% from 2009 to 2010.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 10,
+      "revision": "corrected",
+      "claim": "Completion rate was at least 67% in 2010.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 10,
+      "revision": "redesign",
+      "claim": "Completion rate was at least 67% in 2010.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 10,
+      "revision": "missing",
+      "claim": "Completion rate was at least 67% in 2010.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 10,
+      "revision": "corrected",
+      "claim": "Completion rate was above 20% in 2010.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 10,
+      "revision": "redesign",
+      "claim": "Completion rate was above 20% in 2010.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 10,
+      "revision": "missing",
+      "claim": "Completion rate was above 20% in 2010.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 10,
+      "revision": "corrected",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 10,
+      "revision": "redesign",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 10,
+      "revision": "missing",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 11,
+      "revision": "corrected",
+      "claim": "Occupancy rate rose by at least 10 percentage points from 2010 to 2011.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 11,
+      "revision": "redesign",
+      "claim": "Occupancy rate rose by at least 10 percentage points from 2010 to 2011.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 11,
+      "revision": "missing",
+      "claim": "Occupancy rate rose by at least 10 percentage points from 2010 to 2011.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 11,
+      "revision": "corrected",
+      "claim": "Occupancy rate grew by at least 18% from 2010 to 2011.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 11,
+      "revision": "redesign",
+      "claim": "Occupancy rate grew by at least 18% from 2010 to 2011.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 11,
+      "revision": "missing",
+      "claim": "Occupancy rate grew by at least 18% from 2010 to 2011.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 11,
+      "revision": "corrected",
+      "claim": "Occupancy rate was at least 69% in 2011.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 11,
+      "revision": "redesign",
+      "claim": "Occupancy rate was at least 69% in 2011.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 11,
+      "revision": "missing",
+      "claim": "Occupancy rate was at least 69% in 2011.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 11,
+      "revision": "corrected",
+      "claim": "Occupancy rate was above 20% in 2011.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 11,
+      "revision": "redesign",
+      "claim": "Occupancy rate was above 20% in 2011.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 11,
+      "revision": "missing",
+      "claim": "Occupancy rate was above 20% in 2011.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 11,
+      "revision": "corrected",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 11,
+      "revision": "redesign",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 11,
+      "revision": "missing",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 12,
+      "revision": "corrected",
+      "claim": "Participation rate rose by at least 10 percentage points from 2011 to 2012.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 12,
+      "revision": "redesign",
+      "claim": "Participation rate rose by at least 10 percentage points from 2011 to 2012.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 12,
+      "revision": "missing",
+      "claim": "Participation rate rose by at least 10 percentage points from 2011 to 2012.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 12,
+      "revision": "corrected",
+      "claim": "Participation rate grew by at least 18% from 2011 to 2012.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 12,
+      "revision": "redesign",
+      "claim": "Participation rate grew by at least 18% from 2011 to 2012.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 12,
+      "revision": "missing",
+      "claim": "Participation rate grew by at least 18% from 2011 to 2012.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 12,
+      "revision": "corrected",
+      "claim": "Participation rate was at least 71% in 2012.",
+      "expected": "Contradicted",
+      "predicted": "Contradicted",
+      "transition": "Outdated claim"
+    },
+    {
+      "family": 12,
+      "revision": "redesign",
+      "claim": "Participation rate was at least 71% in 2012.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 12,
+      "revision": "missing",
+      "claim": "Participation rate was at least 71% in 2012.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 12,
+      "revision": "corrected",
+      "claim": "Participation rate was above 20% in 2012.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 12,
+      "revision": "redesign",
+      "claim": "Participation rate was above 20% in 2012.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 12,
+      "revision": "missing",
+      "claim": "Participation rate was above 20% in 2012.",
+      "expected": "Supported",
+      "predicted": "Supported",
+      "transition": "Verdict retained"
+    },
+    {
+      "family": 12,
+      "revision": "corrected",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 12,
+      "revision": "redesign",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    },
+    {
+      "family": 12,
+      "revision": "missing",
+      "claim": "More people participated in the programme.",
+      "expected": "Insufficient evidence",
+      "predicted": "Insufficient evidence",
+      "transition": "Needs evidence"
+    }
+  ],
+  "foundry": {
+    "live": false,
+    "evaluated": 0,
+    "correct": null
+  }
+}

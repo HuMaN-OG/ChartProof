@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ChartProof · Revision workspace</title>
+    <link rel="icon" href="/assets/mark.svg">
+    <link rel="stylesheet" href="/assets/style.css">
+    <script src="/assets/app.js" defer></script>
+  </head>
+  <body>
+    <header><a class="brand" href="/" aria-label="ChartProof home"><img src="/assets/mark.svg"
+          alt="">ChartProof</a>
+      <nav aria-label="Main navigation"><button class="nav active" id="workspaceTab">Workspace</button><button
+          class="nav" id="benchmarkTab">Benchmark</button></nav><span class="state"
+        id="health">Connecting</span>
+    </header>
+    <main>
+      <section id="workspace">
+        <div class="heading">
+          <div>
+            <h1>Revision workspace</h1>
+            <p>Check whether a revised figure still supports the sentences in your report.</p>
+          </div>
+          <div class="actions"><button id="restore">Open audit</button><input id="restoreFile" type="file"
+              accept=".json" hidden><button class="dark" id="export">Export audit</button></div>
+        </div>
+        <div class="controls"><label>Example revision <select id="scenario">
+              <option value="corrected">Corrected value</option>
+              <option value="restyled">Redesigned chart</option>
+              <option value="missing">Missing year</option>
+            </select></label><button id="load">Load example</button><span id="saveState"></span></div>
+        <div class="pair" id="charts"></div>
+        <section class="claimPanel">
+          <div class="panelheading">
+            <div>
+              <h2>Claim checks</h2>
+              <p>Use the figure's metric name and specify the years, units and comparison.</p>
+            </div><button id="check" class="accent">Run checks</button>
+          </div>
+          <form id="claimForm"><label class="grow">Add a report sentence<input id="newClaim" maxlength="360"
+                placeholder="Placement rate grew by 20% from 2024 to 2025."></label><button type="submit">Add
+              claim</button></form>
+          <div id="claimList"></div>
+        </section>
+        <details class="help">
+          <summary>Supported wording and document formats</summary>
+          <p>Upload a PNG, JPEG, WebP or a selected PDF page, up to 3 MiB. Choose one single-series bar chart
+            with a short English metric, four-digit years and printed percentage labels (0–100). Confirm both
+            readings against the source. Verdicts apply to the displayed numbers.</p>
+          <p><b>Lookup</b> · Placement rate was at least 70% in 2025.<br><b>Point change</b> · Placement rate
+            rose by at least 10 percentage points from 2024 to 2025.<br><b>Relative change</b> · Placement
+            rate fell by 5% from 2024 to 2025.</p>
+          <p>Use one claim per sentence. Headcounts, forecasts, compound statements and unsupported wording
+            may return insufficient evidence.</p>
+        </details>
+      </section>
+      <section id="benchmark" hidden>
+        <div class="heading">
+          <div>
+            <h1>Benchmark results</h1>
+            <p>Measured on original, reproducible chart revisions. All figures in a family stay together.</p>
+          </div>
+        </div>
+        <div id="benchBody"></div>
+      </section>
+      <p id="message" role="status" aria-live="polite"></p>
+    </main>
+    <dialog id="editor">
+      <form id="editForm">
+        <div class="panelheading">
+          <h2 id="editTitle">Review figure</h2><button type="button" id="closeEdit">Close</button>
+        </div>
+        <div class="uploadLine"><label>Source file<input type="file" id="file"
+              accept=".pdf,.png,.jpg,.jpeg,.webp"></label><label>PDF page<input type="number" id="page"
+              min="1" max="500" value="1"></label><label>Extraction<select id="engine">
+              <option value="local">Local OCR</option>
+              <option value="azure">Azure Content Understanding</option>
+            </select></label><button type="button" id="extract">Read file</button></div>
+        <p id="cloudNote" hidden>Azure receives the selected page image. The access token is held in memory
+          for this session.</p><label id="tokenLabel" hidden>ChartProof access token<input id="token"
+            type="password" autocomplete="off"></label>
+        <p id="editMessage" role="status"></p><img id="sourcePreview" class="source"
+          alt="Selected chart to check against the proposed readings">
+        <div class="editGrid"><label>Metric as printed<input id="metric" maxlength="80"
+              required></label><label>One year and percentage per line<textarea id="values" rows="4"
+              placeholder="2024, 60&#10;2025, 72" required></textarea></label></div>
+        <label class="confirm"><input id="confirmed" type="checkbox" required> I checked the metric, year
+          labels and percentage scale against the figure.</label><button class="accent" id="apply">Save
+          reviewed figure</button>
+      </form>
+    </dialog>
+    <dialog id="binding">
+      <form id="bindForm">
+        <div class="panelheading">
+          <h2>Link a calculation</h2><button type="button" id="closeBind">Close</button>
+        </div>
+        <p id="bindClaim"></p>
+        <p>Choose the calculation that represents the sentence. Both versions will use this same link.</p>
+        <div class="editGrid">
+          <label>Metric<input id="bindMetric" readonly></label><label>Operation<select id="bindOp">
+              <option value="points">Percentage-point change</option>
+              <option value="relative">Relative percentage change</option>
+              <option value="lookup">Single-year lookup</option>
+            </select></label>
+          <label id="startWrap">Starting year<input id="bindFrom" required
+              pattern="(19|20)[0-9]{2}"></label><label>Target year<input id="bindTo" required
+              pattern="(19|20)[0-9]{2}"></label>
+          <label id="directionWrap">Direction<select id="bindDir">
+              <option value="1">Increase</option>
+              <option value="-1">Decrease</option>
+            </select></label><label>Comparison<select id="bindComp">
+              <option value=">=">At least</option>
+              <option value="=">Exactly</option>
+              <option value=">">Greater than</option>
+              <option value="<=">At most</option>
+              <option value="<">Less than</option>
+            </select></label>
+          <label>Threshold in selected units<input id="bindTarget" type="number" min="0" max="99999"
+              step=".0001" required></label>
+        </div>
+        <label class="confirm"><input id="bindConfirm" type="checkbox" required>I confirm this calculation
+          represents the report sentence.</label><button class="accent">Save calculation link</button> <button
+          id="autoBind" type="button">Use automatic interpretation</button>
+        <p id="bindMsg" role="status"></p>
+      </form>
+    </dialog>
+    <footer>
+      <span>ChartProof</span>
+      <a href="https://github.com/HuMaN-OG/ChartProof">GitHub repository</a>
+      <a href="/assets/ChartProof_Source.zip">Download project source</a>
+    </footer>
+  </body>
+</html>

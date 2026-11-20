@@ -1,0 +1,11 @@
+{
+  "source": "ChartCheck test_two.csv",
+  "csv_sha256": "a815a008865cd9762ecacb19a39a39409bf91060679084a643df19256455cb93",
+  "rows": 981,
+  "distinct_images": 151,
+  "accepted": 1,
+  "row_indices": [
+    530
+  ],
+  "scope": "Admission by the English operation parser on untouched sentences. This is a coverage measure, not image-level accuracy."
+}

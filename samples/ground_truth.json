@@ -1,0 +1,33 @@
+{
+  "original": {
+    "metric": "Placement rate",
+    "values": {
+      "2023": "55",
+      "2024": "60",
+      "2025": "72"
+    }
+  },
+  "corrected": {
+    "metric": "Placement rate",
+    "values": {
+      "2023": "55",
+      "2024": "60",
+      "2025": "68"
+    }
+  },
+  "restyled": {
+    "metric": "Placement rate",
+    "values": {
+      "2023": "55",
+      "2024": "60",
+      "2025": "72"
+    }
+  },
+  "missing": {
+    "metric": "Placement rate",
+    "values": {
+      "2023": "55",
+      "2025": "72"
+    }
+  }
+}
