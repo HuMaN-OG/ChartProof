@@ -5,10 +5,16 @@ const key = "chartproof.audit.v1";
 let state, editing, draft, cloudToken = "",
   health = {},
   requestNumber = 0;
-const chartNames = {
-  before: "Original figure",
-  after: "Revised figure"
-};
+const chartNames = {before: "Original figure", after: "Revised figure"};
+let quickSide = "before";
+let enteringSide = "before";
+function emptyState() {
+  return {schema: 1, mode: "verify", before: null, after: null, claims: [],
+    results: [], history: [], links: {}, visionComparisons: {}};
+}
+function comparing() {return state?.mode === "compare";}
+function selectedAfter() {return comparing() ? state.after : state.before;}
+function ready() {return !!(state?.before?.reviewed && selectedAfter()?.reviewed);}
 
 function el(tag, txt, cls) {
   const n = document.createElement(tag);
@@ -69,29 +75,47 @@ function usable(c) {
 }
 
 function validate(a) {
-  if (a?.schema !== 1 || !usable(a.before) || !usable(a.after) || !Array.isArray(a.claims) || a.claims
+  if (a?.schema !== 1 || (a.before !== null && !usable(a.before)) ||
+      (a.after != null && !usable(a.after)) || !Array.isArray(a.claims) || a.claims
     .length > 20 || a.claims.some(s => typeof s !== "string" || s.length > 360)) throw Error(
     "Choose a valid ChartProof version 1 audit.");
-  return {
-    ...a,
-    results: []
-  };
+  return {...a, mode: a.mode === "verify" ? "verify" : "compare", results: []};
 }
 
+function quickUpload(side) {
+  quickSide = side;
+  $("quickFile").click();
+}
 function sourceCard(side) {
-  const c = state[side],
-    box = el("article", undefined, "card"),
-    head = el("div", undefined, "cardHead"),
-    title = el("div");
-  title.append(el("h3", chartNames[side]), el("small", (c.filename || "Uploaded chart") + " · page " + c
-    .page));
-  head.append(title, btn("Review / replace", () => openEdit(side)));
+  const c = state[side], box = el("article", undefined, "card"),
+    head = el("div", undefined, "cardHead"), title = el("div"),
+    actions = el("div", undefined, "cardActions");
+  title.append(el("h3", comparing() ? chartNames[side] : "Chart evidence"));
+  title.append(el("small", c ? (c.filename || "Reviewed data") + " · " + (c.engine || "Manual") :
+    "No chart uploaded"));
+  head.append(title);
+  if (!c) {
+    box.classList.add("emptyCard");
+    const body = el("div", undefined, "emptyCardBody");
+    body.append(el("p", "Add " + (side === "after" ? "the new chart" : "the original chart") +
+      " to continue your comparison."));
+    const choose = el("div", undefined, "cardActions");
+    choose.append(btn("Upload chart", () => quickUpload(side), "accent"),
+      btn("Paste values / CSV", () => openDataEntry(side), "quiet"));
+    body.append(choose);
+    box.append(head, body);
+    return box;
+  }
+  actions.append(btn("Review / replace", () => openEdit(side)),
+    btn("Paste values / CSV", () => openDataEntry(side), "quiet"));
+  head.append(actions);
   const im = el("img");
   im.src = c.image;
-  im.alt = c.metric + " chart, " + c.rows.map(r => r.year + " " + r.value + "%").join(", ");
+  im.alt = c.metric + " chart: " + c.rows.map(r => r.year + " " + r.value + "%").join(", ");
   const meta = el("div", undefined, "chartMeta");
-  meta.append(el("span", c.engine + " · " + (c.reviewed ? "Reviewed" : "Review required")), el("span", c.rows
-    .map(r => r.year + "  " + r.value + "%").join("   /   ")));
+  meta.append(el("span", (c.engine || "Reviewed data") + " · " +
+    (c.reviewed ? "Reviewed" : "Review required")),
+    el("span", c.rows.map(r => r.year + "  " + r.value + "%").join("   /   ")));
   box.append(head, im, meta);
   return box;
 }
@@ -140,18 +164,22 @@ function resultRow(claim, i) {
     box = el("article", undefined, "result"),
     rh = el("div", undefined, "rhead");
   rh.append(el("span", claim));
-  rh.append(el("span", result?.transition || "Awaiting check", "badge " + (result?.transition ===
-    "Outdated claim" ? "alert" : result?.after?.status === "Insufficient evidence" ? "unknown" : "")));
+  const status = result ? (comparing() ? result.transition : result.after.status) : "Awaiting check";
+  const className = result && (status === "Outdated claim" || status === "Contradicted") ?
+    "alert" : result && status === "Insufficient evidence" ? "unknown" : "";
+  rh.append(el("span", status, "badge " + className));
   box.append(rh);
   if (result) {
     const details = el("details");
     if (i === 0) details.open = true;
     details.append(el("summary", "Inspect evidence"));
     const grid = el("div", undefined, "proof");
-    grid.append(proofSide("Original", result.before), proofSide("Revision", result.after));
+    if (comparing()) grid.append(proofSide("Original", result.before),
+      proofSide("Revised", result.after));
+    else grid.append(proofSide("Chart evidence", result.after));
     details.append(grid);
     const impact = result.revision_impact;
-    if (impact) {
+    if (impact && comparing()) {
       const changes = impact.changes.map(row => row.kind === "added"
         ? row.year + ": added " + row.after + "%"
         : row.kind === "removed" ? row.year + ": removed " + row.before + "%"
@@ -190,14 +218,37 @@ function resultRow(claim, i) {
 
 function render() {
   if (!state) return;
-  $("charts").replaceChildren(sourceCard("before"), sourceCard("after"));
+  const isComparison = comparing();
+  $("verifyMode").classList.toggle("chosen", !isComparison);
+  $("compareMode").classList.toggle("chosen", isComparison);
+  $("verifyMode").setAttribute("aria-pressed", String(!isComparison));
+  $("compareMode").setAttribute("aria-pressed", String(isComparison));
+  $("modeNote").textContent = isComparison ?
+    "Compare original and revised figures. Verify both sets of values before running checks." :
+    "Check whether your statement agrees with one reviewed chart. No previous version needed.";
+  $("uploadZone").hidden = !!state.before;
+  $("charts").classList.toggle("single", !isComparison);
+  const cards = isComparison ? [sourceCard("before"), sourceCard("after")] :
+    state.before ? [sourceCard("before")] : [];
+  $("charts").replaceChildren(...cards);
   $("claimList").replaceChildren(...state.claims.map(resultRow));
-  $("check").disabled = !state.claims.length || !state.before.reviewed || !state.after.reviewed;
+  $("claimHint").textContent = state.before?.metric ?
+    "Use the exact metric name: “" + state.before.metric + "”. Specify years and units." :
+    "Use the metric on your chart, such as Placement rate or CBSE pass rate.";
+  $("emptyResults").hidden = !!state.results.length;
+  $("emptyResults").textContent = !state.before ? "First upload a chart or paste a table." :
+    !ready() ? "Review and confirm " + (isComparison ? "both charts" : "your chart") +
+      " to enable verification." :
+    !state.claims.length ? "Add a numerical statement above to see the evidence and verdict." :
+    "Click Run verification to calculate the result.";
+  $("check").disabled = !ready() || !state.claims.length;
+  $("export").disabled = !(state.before && (isComparison ? state.after : true));
 }
+
 async function runChecks() {
   if (!state) return;
   const id = ++requestNumber;
-  if (!state.claims.length || !state.before.reviewed || !state.after.reviewed) {
+  if (!state.claims.length || !ready()) {
     state.results = [];
     $("export").disabled = false;
     persist();
@@ -212,6 +263,7 @@ async function runChecks() {
   try {
     const brief = c => ({
       reviewed: c.reviewed,
+      sha256: c.sha256,
       metric: c.metric,
       unit: c.unit,
       rows: c.rows.map(r => ({
@@ -221,7 +273,7 @@ async function runChecks() {
     });
     const r = await api("/api/check", {
       before: brief(state.before),
-      after: brief(state.after),
+      after: brief(selectedAfter()),
       claims: state.claims,
       links: state.links || {}
     });
@@ -249,6 +301,7 @@ async function loadExample() {
     scenario)]);
     state = {
       schema: 1,
+      mode: "compare",
       before,
       after,
       claims: [sampleClaim, "Placement rate was at least 65% in 2025."],
@@ -267,16 +320,22 @@ async function loadExample() {
 }
 
 function fillEditor(c) {
-  $("sourcePreview").src = c.image;
-  $("metric").value = c.metric;
-  $("values").value = c.rows.map(r => r.year + ", " + r.value).join("\n");
+  $("sourcePreview").hidden = !c?.image;
+  if (c?.image) $("sourcePreview").src = c.image;
+  else $("sourcePreview").removeAttribute("src");
+  $("metric").value = c?.metric || "";
+  $("values").value = (c?.rows || []).map(r => r.year + ", " + r.value).join("\n");
   $("confirmed").checked = false;
-  $("editMessage").textContent = c.warning || "Check the source before saving.";
+  $("apply").disabled = !c?.image;
+  $("editMessage").textContent = c?.image ?
+    (c.warning || "Verify every recognized value against the source, then confirm.") :
+    "Choose a chart image or a PDF, then click Read file.";
 }
 
 function openEdit(side) {
   editing = side;
-  draft = structuredClone(state[side]);
+  draft = state[side] ? structuredClone(state[side]) :
+    {image: "", rows: [], metric: "", reviewed: false, unit: "%", page: 1, pages: 1};
   $("editTitle").textContent = chartNames[side];
   $("file").value = "";
   $("page").value = "1";
@@ -292,8 +351,8 @@ function cloudUI() {
   $("tokenLabel").hidden = !isCloud;
   $("token").value = cloudToken;
 }
-async function readUpload() {
-  const f = $("file").files[0];
+async function readUpload(chosenFile) {
+  const f = chosenFile || $("file").files[0];
   if (!f) {
     $("editMessage").textContent = "Choose a file first.";
     return;
@@ -353,35 +412,75 @@ function applyEdit(e) {
     const metric = $("metric").value.trim();
     if (!/^[A-Za-z][A-Za-z0-9 &'/-]{0,79}$/.test(metric)) throw Error(
       "Use a short English metric name matching the chart.");
-    const old = state[editing];
-    state.history.push({
-      side: editing,
-      at: new Date().toISOString(),
-      oldSource: old.sha256,
-      newSource: draft.sha256,
-      previous: {
-        metric: old.metric,
-        rows: old.rows
-      },
-      reviewed: {
-        metric,
-        rows
-      }
-    });
-    state[editing] = {
-      ...draft,
-      metric,
-      rows,
-      reviewed: true
-    };
-    state.results = [];
-    state.visionComparisons = {};
+    saveFigure(editing, {...draft, metric, rows, reviewed: true});
     $("editor").close();
-    render();
-    runChecks();
   } catch (err) {
     $("editMessage").textContent = err.message;
   }
+}
+function saveFigure(side, figure) {
+  const old = state[side];
+  if (old) {
+    state.history.push({side, at: new Date().toISOString(),
+      oldSource: old.sha256 || null, newSource: figure.sha256 || null,
+      previous: {metric: old.metric, rows: old.rows},
+      reviewed: {metric: figure.metric, rows: figure.rows}});
+  }
+  state[side] = figure;
+  state.results = [];
+  state.visionComparisons = {};
+  render();
+  runChecks();
+}
+
+function openDataEntry(side) {
+  enteringSide = side;
+  $("entryMetric").value = state[side]?.metric || state.before?.metric || "";
+  $("entryRows").value = state[side]?.rows?.map(r => r.year + "," + r.value).join("\n") || "";
+  $("entryCsv").value = "";
+  $("entryConfirm").checked = false;
+  $("entryMessage").textContent = "";
+  $("dataEntry").showModal();
+}
+function parseDataRows(raw) {
+  const lines = raw.trim().split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+  if (!lines.length) throw Error("Enter at least one year and percentage.");
+  if (/^year\s*[,;\t]/i.test(lines[0])) lines.shift();
+  if (!lines.length || lines.length > 12) throw Error("Use between 1 and 12 year/percentage rows.");
+  const rows = lines.map(line => {
+    const columns = line.split(/[,;\t]/).map(x => x.trim().replace(/^"|"$/g, ""));
+    const year = columns[0], number = columns[1]?.replace(/%$/, "").trim();
+    if (columns.length !== 2 || !/^(19|20)\d{2}$/.test(year) ||
+        !/^\d{1,3}(?:\.\d{1,4})?$/.test(number) || Number(number) > 100)
+      throw Error("Each row needs a four-digit year and a percentage (example: 2025,66).");
+    return {year, value: number, box: null};
+  });
+  if (new Set(rows.map(row => row.year)).size !== rows.length)
+    throw Error("Each year can appear only once.");
+  return rows.sort((a, b) => a.year.localeCompare(b.year));
+}
+function dataChart(metric, rows) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 920; canvas.height = 520;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, 920, 520);
+  ctx.fillStyle = "#173e37"; ctx.font = "bold 33px Arial";
+  ctx.fillText(metric, 62, 78);
+  const base = 410, width = 770 / rows.length, barWidth = Math.min(64, width * .56);
+  ctx.strokeStyle = "#e0e9e4"; ctx.lineWidth = 2;
+  for (const y of [170, 250, 330, 410]) {
+    ctx.beginPath();ctx.moveTo(75, y);ctx.lineTo(846, y);ctx.stroke();
+  }
+  rows.forEach((row, i) => {
+    const x = 75 + width * (i + .5), h = Number(row.value) * 2.45;
+    ctx.fillStyle = "#237a61";ctx.fillRect(x - barWidth/2, base-h, barWidth, h);
+    ctx.fillStyle = "#153c36";ctx.font = "bold " + (rows.length > 7 ? 16 : 22) + "px Arial";
+    ctx.textAlign = "center";ctx.fillText(row.value + "%", x, base-h-13);
+    ctx.fillStyle = "#576d60";ctx.font = "18px Arial";ctx.fillText(row.year, x, 456);
+  });
+  ctx.textAlign = "left";ctx.fillStyle = "#6b7e75";ctx.font = "14px Arial";
+  ctx.fillText("User-entered values • not an authenticated source", 62, 494);
+  return canvas.toDataURL("image/png");
 }
 let bindingText = "";
 
@@ -486,6 +585,50 @@ function tab(b) {
   $("benchmarkTab").classList.toggle("active", b);
   if (b) benchmark();
 }
+$("verifyMode").onclick = () => {state.mode = "verify";state.results = [];render();runChecks();};
+$("compareMode").onclick = () => {state.mode = "compare";state.results = [];render();runChecks();};
+$("startUpload").onclick = () => quickUpload("before");
+$("openEntry").onclick = () => openDataEntry("before");
+$("quickFile").onchange = async () => {
+  const f = $("quickFile").files[0];
+  $("quickFile").value = "";
+  if (!f) return;
+  openEdit(quickSide);
+  await readUpload(f);
+};
+const dz = $("uploadZone");
+dz.ondragover = event => {event.preventDefault();dz.classList.add("dragging");};
+dz.ondragleave = () => dz.classList.remove("dragging");
+dz.ondrop = async event => {
+  event.preventDefault();dz.classList.remove("dragging");
+  const f = event.dataTransfer?.files?.[0];
+  if (f) {openEdit("before");await readUpload(f);}
+};
+$("closeEntry").onclick = () => $("dataEntry").close();
+$("entryCsv").onchange = async () => {
+  const f = $("entryCsv").files[0];
+  if (!f) return;
+  try {
+    if (f.size > 100000) throw Error("Choose a CSV under 100 KB.");
+    $("entryRows").value = await f.text();
+    $("entryMessage").textContent = "CSV loaded. Check the values before continuing.";
+  } catch (e) {$("entryMessage").textContent = e.message;}
+};
+$("entryForm").onsubmit = event => {
+  event.preventDefault();
+  try {
+    const metric = $("entryMetric").value.trim();
+    if (!/^[A-Za-z][A-Za-z0-9 &'/-]{0,79}$/.test(metric))
+      throw Error("Use a short metric name like Placement rate.");
+    const rows = parseDataRows($("entryRows").value);
+    const figure = {metric, rows, image: dataChart(metric, rows),
+      page: 1, pages: 1, unit: "%", reviewed: true, filename: "Entered percentage data",
+      engine: "User-entered values", observed: {metric, rows}, sha256: null,
+      warning: "Values supplied and confirmed by the user; source authenticity not verified."};
+    saveFigure(enteringSide, figure);
+    $("dataEntry").close();
+  } catch (e) {$("entryMessage").textContent = e.message;}
+};
 $("claimForm").onsubmit = e => {
   e.preventDefault();
   const t = $("newClaim").value.trim();
@@ -502,7 +645,7 @@ $("check").onclick = runChecks;
 $("load").onclick = loadExample;
 $("closeEdit").onclick = () => $("editor").close();
 $("editForm").onsubmit = applyEdit;
-$("extract").onclick = readUpload;
+$("extract").onclick = () => readUpload();
 $("engine").onchange = cloudUI;
 $("file").onchange = () => {
   $("apply").disabled = !!$("file").files.length;
@@ -549,7 +692,9 @@ $("restoreFile").onchange = async () => {
         return;
       } catch {}
     }
-    await loadExample();
+    state = emptyState();
+    render();
+    persist();
   } catch (e) {
     note("Could not start the workspace: " + e.message);
   }

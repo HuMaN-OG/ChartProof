@@ -16,6 +16,18 @@ ChartProof is a **revision-aware evidence review tool**, not a general-purpose c
 
 For an authentic source-backed demonstration, see the [CBSE Class XII real-data guide](docs/real-data-demo.md). It includes a CSV transcribed from official published percentages, a reproducible chart generator (`python tools/real_data_demo.py`), genuine year-over-year claim checks, and a separately identified intentional transcription-error scenario that demonstrates an outdated claim without misrepresenting official statistics.
 
+## Upload-first Evidence Studio
+
+The main workspace now starts **empty**, so you do not have to load an example before checking your own information:
+
+1. Use **Upload a chart** or drag in a PNG, JPG, WebP or selected PDF page. Local Tesseract reads the labels, then you confirm the extracted metric and percentages.
+2. Or use **Paste values / CSV** for a two-column year-and-percentage table (up to 12 rows). This draws a readable chart in the browser and marks its provenance as *user-entered*, not OCR-extracted or independently authenticated.
+3. Add a supported percentage claim and choose **Run verification**. The single-chart mode evaluates the claim against that one evidence set.
+4. Switch to **Compare revisions** to upload an original and revised chart and detect outdated claims, missing evidence and cosmetic-only changes.
+5. **Export audit** preserves the reviewed charts and checks. **Load demo** remains optional, with clearly labeled scenarios.
+
+ChartProof checks statements against **supplied evidence**, not the truth or authenticity of the upstream source. Manual/CSV rows are a convenient input route, not evidence of OCR accuracy. The broadest supported input is still a single-series percentage metric with four-digit year labels.
+
 ## Try the full workflow
 
 1. Start the web app with Docker.

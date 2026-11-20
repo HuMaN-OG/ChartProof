@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ChartProof · Revision workspace</title>
+    <title>ChartProof · Verify numerical claims and track chart revisions</title>
     <link rel="icon" href="/assets/mark.svg">
     <link rel="stylesheet" href="/assets/style.css">
     <script src="/assets/app.js" defer></script>
@@ -16,43 +16,79 @@
         id="health">Connecting</span>
     </header>
     <main>
+
       <section id="workspace">
-        <div class="heading">
-          <div>
-            <h1>Revision workspace</h1>
-            <p>Check whether a revised figure still supports the sentences in your report.</p>
+        <div class="hero">
+          <div class="heroCopy">
+            <p class="eyebrow"><span class="eyebrowDot"></span> CHARTPROOF / EVIDENCE STUDIO</p>
+            <h1>Make every claim <em>checkable.</em></h1>
+            <p class="heroLead">Bring a chart or your own year-by-year data. We'll help you review the numbers, verify a statement, and see what changes when the evidence changes.</p>
+            <div class="heroBadges"><span>01 &nbsp; Upload evidence</span><span>02 &nbsp; Review values</span><span>03 &nbsp; Verify claim</span></div>
           </div>
-          <div class="actions"><button id="restore">Open audit</button><input id="restoreFile" type="file"
-              accept=".json" hidden><button class="dark" id="export">Export audit</button></div>
+          <div class="heroActions">
+            <button id="restore" class="quiet" type="button">↥ &nbsp; Open audit</button>
+            <input id="restoreFile" type="file" accept=".json" hidden>
+            <button id="export" class="dark" type="button" disabled>↧ &nbsp; Export audit</button>
+            <p class="localTrust">Your workspace is stored in this browser. The server processes uploaded figures; verify the original source yourself.</p>
+          </div>
         </div>
-        <div class="controls"><label>Example revision <select id="scenario">
-              <option value="corrected">Corrected value</option>
-              <option value="restyled">Redesigned chart</option>
-              <option value="missing">Missing year</option>
-            </select></label><button id="load">Load example</button><span id="saveState"></span></div>
-        <div class="pair" id="charts"></div>
-        <section class="claimPanel">
-          <div class="panelheading">
-            <div>
-              <h2>Claim checks</h2>
-              <p>Use the figure's metric name and specify the years, units and comparison.</p>
-            </div><button id="check" class="accent">Run checks</button>
+
+        <section class="studioSection" aria-labelledby="evidenceTitle">
+          <div class="studioHead">
+            <div class="stepHeading"><span class="stepNumber">01</span><div><p class="kicker">ADD YOUR EVIDENCE</p><h2 id="evidenceTitle">Start with the numbers</h2><p>Upload a clear chart, or paste a year-and-percentage table.</p></div></div>
+            <div class="modeSwitch" role="group" aria-label="Verification mode">
+              <button id="verifyMode" class="chosen" aria-pressed="true" type="button">Check one chart</button>
+              <button id="compareMode" aria-pressed="false" type="button">Compare revisions</button>
+            </div>
           </div>
-          <form id="claimForm"><label class="grow">Add a report sentence<input id="newClaim" maxlength="360"
-                placeholder="Placement rate grew by 20% from 2024 to 2025."></label><button type="submit">Add
-              claim</button></form>
-          <div id="claimList"></div>
+          <p id="modeNote" class="modeNote">Start here: one chart and one claim. No sample is required.</p>
+          <div id="uploadZone" class="uploadZone">
+            <div class="uploadIcon" aria-hidden="true">↥</div>
+            <h3>Drop a chart here, or choose a file</h3>
+            <p>PNG, JPG, WebP or a PDF page • up to 3 MiB • local OCR available</p>
+            <div class="uploadActions">
+              <button type="button" id="startUpload" class="accent">Upload a chart <span aria-hidden="true">↗</span></button>
+              <button type="button" id="openEntry" class="quiet">Paste values / CSV</button>
+            </div>
+            <p class="finePrint">Designed for single-series percentage bar charts with visible year and % labels.</p>
+          </div>
+          <input id="quickFile" type="file" accept=".png,.jpg,.jpeg,.webp,.pdf" hidden>
+          <div class="pair" id="charts"></div>
+          <div class="sampleStrip">
+            <div class="sampleLabel"><strong>Want to see it in action?</strong> <span>Try a demonstration before adding your data.</span></div>
+            <div class="sampleActions"><label for="scenario">Sample</label><select id="scenario"><option value="corrected">Corrected value</option><option value="restyled">Cosmetic redesign</option><option value="missing">Missing year</option></select><button type="button" id="load">Load demo</button></div>
+          </div>
+          <p id="saveState" class="storageLine">Ready for your evidence</p>
         </section>
+
+        <section class="studioSection claimPanel" aria-labelledby="claimsTitle">
+          <div class="studioHead">
+            <div class="stepHeading"><span class="stepNumber">02</span><div><p class="kicker">WRITE WHAT YOU WANT TO TEST</p><h2 id="claimsTitle">Enter a numerical claim</h2><p id="claimHint">Use the same metric name displayed on your chart.</p></div></div>
+          </div>
+          <form id="claimForm">
+            <label class="grow" for="newClaim">Statement from your report
+              <input id="newClaim" maxlength="360" placeholder="Placement rate grew by exactly 10% from 2024 to 2025." required>
+            </label>
+            <button class="quiet" type="submit">+ Add claim</button>
+          </form>
+          <div class="claimExamples">Examples: <span>“Placement rate was at least 60% in 2025.”</span> <span>“Placement rate rose by 6 percentage points from 2024 to 2025.”</span></div>
+        </section>
+
+        <section class="studioSection resultsSection" aria-labelledby="resultsTitle">
+          <div class="studioHead">
+            <div class="stepHeading"><span class="stepNumber">03</span><div><p class="kicker">EXPLAINABLE VERIFICATION</p><h2 id="resultsTitle">Evidence &amp; verdicts</h2><p>Inspect the values and formulas behind each result.</p></div></div>
+            <button type="button" id="check" class="accent" disabled>Run verification <span aria-hidden="true">↗</span></button>
+          </div>
+          <div id="emptyResults" class="emptyResults">Upload evidence and add a statement to see a verdict.</div>
+          <div id="claimList" aria-live="polite"></div>
+          <p class="limitation">A <b>Supported</b> verdict means the sentence agrees with the provided, reviewed chart—not that the source data has been independently authenticated.</p>
+        </section>
+
         <details class="help">
-          <summary>Supported wording and document formats</summary>
-          <p>Upload a PNG, JPEG, WebP or a selected PDF page, up to 3 MiB. Choose one single-series bar chart
-            with a short English metric, four-digit years and printed percentage labels (0–100). Confirm both
-            readings against the source. Verdicts apply to the displayed numbers.</p>
-          <p><b>Lookup</b> · Placement rate was at least 70% in 2025.<br><b>Point change</b> · Placement rate
-            rose by at least 10 percentage points from 2024 to 2025.<br><b>Relative change</b> · Placement
-            rate fell by 5% from 2024 to 2025.</p>
-          <p>Use one claim per sentence. Headcounts, forecasts, compound statements and unsupported wording
-            may return insufficient evidence.</p>
+          <summary>What data can ChartProof check?</summary>
+          <p><b>Chart images/PDFs:</b> Single-series English bar charts, explicit percentages from 0 to 100, four-digit years, and one figure per upload. Confirm OCR readings before checking.</p>
+          <p><b>Paste values/CSV:</b> Two columns (year, percentage), with one year and one value per row. Enter a short metric name. This route uses your reviewed input directly rather than OCR.</p>
+          <p><b>Supported statements:</b> Single-year percentage checks, percentage-point changes, and relative percentage changes. Unsupported wording, headcounts and absent values yield insufficient evidence. A reviewer can manually link a calculation for other phrasing.</p>
         </details>
       </section>
       <section id="benchmark" hidden>
@@ -69,7 +105,7 @@
     <dialog id="editor">
       <form id="editForm">
         <div class="panelheading">
-          <h2 id="editTitle">Review figure</h2><button type="button" id="closeEdit">Close</button>
+          <h2 id="editTitle">Upload &amp; review chart</h2><button type="button" id="closeEdit">Close</button>
         </div>
         <div class="uploadLine"><label>Source file<input type="file" id="file"
               accept=".pdf,.png,.jpg,.jpeg,.webp"></label><label>PDF page<input type="number" id="page"
@@ -88,6 +124,19 @@
         <label class="confirm"><input id="confirmed" type="checkbox" required> I checked the metric, year
           labels and percentage scale against the figure.</label><button class="accent" id="apply">Save
           reviewed figure</button>
+      </form>
+    </dialog>
+
+    <dialog id="dataEntry" aria-labelledby="entryTitle">
+      <form id="entryForm">
+        <div class="panelheading"><div><p class="kicker">ALTERNATIVE TO OCR</p><h2 id="entryTitle">Paste numerical data</h2></div><button type="button" id="closeEntry">Close</button></div>
+        <p class="dialogIntro">Use data you have already checked against a reliable source. This creates a chart for calculation; it cannot authenticate the numbers.</p>
+        <label>Metric name<input id="entryMetric" maxlength="80" placeholder="Placement rate" required></label>
+        <label>Year and percentage values (CSV or one pair per line)<textarea id="entryRows" rows="8" placeholder="year,percentage&#10;2024,60&#10;2025,66" required></textarea></label>
+        <label class="importLabel">Or import a two-column CSV <input id="entryCsv" type="file" accept=".csv,text/csv,.txt,text/plain"></label>
+        <label class="confirm"><input id="entryConfirm" type="checkbox" required> I have checked these figures against their original source.</label>
+        <p id="entryMessage" role="status"></p>
+        <button class="accent" type="submit">Use these values <span aria-hidden="true">↗</span></button>
       </form>
     </dialog>
     <dialog id="binding">

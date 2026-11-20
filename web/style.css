@@ -578,3 +578,108 @@ textarea:focus-visible {
     font-size: 14px
   }
 }
+
+
+/* Evidence Studio redesign — visible upload-first flow, compact cards, clear hierarchy */
+:root {font-family:Inter, "Segoe UI", Arial, sans-serif;color:#182e35;background:#f5f7f6}
+body {background:radial-gradient(circle at 20% 8%,#e9f4ef 0,transparent 32%),#f5f7f6}
+header {position:sticky;top:0;z-index:30;background:#fffdfaf2;backdrop-filter:blur(12px);border-color:#e4e8e4;box-shadow:0 1px 14px #122c2510}
+.brand {color:#173f39}
+.nav {font-weight:700;border-radius:10px;padding:10px 17px}
+.nav.active {background:#e9f3ee;color:#145543}
+main {max-width:1260px;padding:30px 30px 58px}
+.hero {display:flex;gap:35px;justify-content:space-between;align-items:center;background:#113b35;color:#fff;border-radius:24px;padding:39px 43px;position:relative;overflow:hidden;margin-bottom:22px;box-shadow:0 18px 36px #133d3220}
+.hero:before {content:"";position:absolute;right:-110px;top:-150px;width:420px;height:420px;border:1px solid #ffffff22;border-radius:50%;box-shadow:0 0 0 68px #ffffff08,0 0 0 140px #ffffff08;pointer-events:none}
+.heroCopy,.heroActions {position:relative;z-index:1}
+.heroCopy {max-width:690px}
+.eyebrow,.kicker {font-size:11px;letter-spacing:.13em;font-weight:800}
+.eyebrow {color:#a7d7bb;margin-bottom:18px}
+.eyebrowDot {display:inline-block;width:8px;height:8px;border-radius:50%;background:#baf1b3;margin-right:8px}
+.hero h1 {font-family:Georgia,serif;font-size:clamp(37px,4.1vw,62px);letter-spacing:-2px;line-height:1.08;font-weight:600}
+.hero h1 em {color:#bfe3b4;font-style:normal}
+.heroLead {color:#d6ebe1;max-width:650px;font-size:16px;margin-top:15px;line-height:1.62}
+.heroBadges {display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.heroBadges span {font-size:11px;font-weight:650;padding:7px 11px;background:#ffffff14;border:1px solid #ffffff27;border-radius:50px}
+.heroActions {display:flex;flex-direction:column;align-items:stretch;gap:10px;min-width:188px}
+.heroActions button {white-space:nowrap;padding:12px 16px}
+.heroActions .quiet {background:#ffffff17;border-color:#ffffff4d;color:#fff}
+.heroActions .quiet:hover {background:#ffffff2a}
+.heroActions .dark {background:#b8eab2;border-color:#b8eab2;color:#12372f}
+.heroActions .dark:hover {background:#d9f7d2;color:#12372f}
+.localTrust {font-size:11px;color:#d6e7df;line-height:1.5;margin-top:6px}
+.studioSection {background:#fff;border:1px solid #e1e8e3;border-radius:19px;padding:25px 28px;margin-bottom:17px;box-shadow:0 7px 22px #203e3010}
+.studioHead {display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:16px}
+.stepHeading {display:flex;align-items:flex-start;gap:15px}
+.stepNumber {width:39px;height:39px;border-radius:12px;background:#e7f3ed;color:#165842;font-size:15px;font-weight:850;display:grid;place-items:center;flex-shrink:0}
+.kicker {color:#5d8975;margin:1px 0 5px}
+.studioHead h2 {font-size:23px;letter-spacing:-.55px}
+.studioHead p:not(.kicker) {color:#63746b;font-size:13px;margin-top:5px}
+.modeSwitch {display:flex;gap:3px;padding:4px;background:#edf2ee;border:1px solid #e0e8e1;border-radius:11px;flex-shrink:0}
+.modeSwitch button {font-size:12px;border:0;background:transparent;color:#486054;padding:11px 14px;border-radius:8px}
+.modeSwitch button.chosen {background:white;color:#134b3a;box-shadow:0 2px 6px #203e3015}
+.modeNote {font-size:13px;color:#48675c;background:#f1f8f4;border:1px solid #e0efe4;border-radius:9px;padding:10px 13px;margin:0 0 16px}
+.uploadZone {border:2px dashed #a8c5b5;background:linear-gradient(135deg,#f7fcf9,#eef7f2);border-radius:15px;min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 18px;transition:background .2s,border-color .2s}
+.uploadZone.dragging {border-color:#16634c;background:#e5f5ed}
+.uploadIcon {display:grid;place-items:center;width:46px;height:46px;background:#dcf0e4;color:#155b43;border-radius:14px;font-size:27px;font-weight:700;margin-bottom:12px}
+.uploadZone h3 {font-size:19px;letter-spacing:-.35px}
+.uploadZone>p {font-size:13px;color:#617a6a;margin-top:5px}
+.uploadActions {display:flex;gap:10px;margin-top:17px;flex-wrap:wrap;justify-content:center}
+.uploadActions button {padding:12px 19px}
+.uploadZone .finePrint {font-size:11px;color:#6b8073;margin-top:13px}
+.accent,.dark {background:#17604a;border-color:#17604a;color:white}
+.accent:hover:not(:disabled),.dark:hover:not(:disabled) {background:#23755b;color:white}
+.quiet {background:#fff;border-color:#c9dad0;color:#1b5645}
+.sampleStrip {display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 3px 0;border-top:1px solid #ecf0ed;margin-top:19px}
+.sampleLabel {display:flex;flex-direction:column;gap:3px;font-size:13px}
+.sampleLabel span {color:#76857c;font-size:12px}
+.sampleActions {display:flex;align-items:center;gap:9px}
+.sampleActions label {font-size:12px}
+.sampleActions select {font-size:12px;max-width:210px}
+.sampleActions button {font-size:12px}
+.storageLine {font-size:11px;color:#7b8b81;text-align:right;margin-top:10px}
+.pair {margin-top:10px}
+.pair.single {grid-template-columns:minmax(0,1fr)}
+.pair.single .card {max-width:760px;margin:0 auto;width:100%}
+.card {border-radius:13px;border-color:#e0e9e4;background:#fcfefd}
+.cardHead {padding:15px 18px;align-items:flex-start;background:#fbfdfb}
+.cardHead h3 {font-size:16px;margin-bottom:3px}
+.cardHead small {display:block}
+.cardHead .cardActions {display:flex;gap:7px}
+.cardHead button {font-size:12px;padding:7px 11px}
+.card img {height:clamp(195px,25vw,290px);background:#fff}
+.chartMeta {padding:12px 16px;line-height:1.5;background:#f7faf7}
+.emptyCard {border:2px dashed #c0d3c6;background:#f8fbf9;min-height:275px;display:flex;flex-direction:column}
+.emptyCard .cardHead {border:0;background:transparent}
+.emptyCard .emptyCardBody {flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;padding:20px;color:#61796b;text-align:center}
+.emptyCardBody .cardActions {display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.claimPanel,.help,.benchTable {margin-top:0}
+.claimPanel {padding:25px 28px}
+.claimPanel form {gap:12px;margin:17px 0 0}
+.claimPanel label {font-size:12px;color:#52695e;letter-spacing:.02em}
+.claimPanel input {min-height:48px;font-size:14px;border-color:#cddbd2;padding:12px 14px}
+.claimPanel form button {min-height:48px}
+.claimExamples {display:flex;flex-wrap:wrap;gap:6px;font-size:11px;color:#789084;margin-top:10px}
+.claimExamples span {background:#f4f8f5;border-radius:20px;padding:3px 9px}
+.resultsSection {padding:25px 28px}
+.resultsSection .studioHead {margin-bottom:11px}
+.resultsSection #check {padding:12px 19px}
+.emptyResults {background:#f7faf8;border:1px dashed #d4e1d8;border-radius:12px;text-align:center;color:#7a8b80;padding:28px 16px;font-size:13px}
+.result {border:1px solid #e3e9e4;border-radius:11px;padding:16px 17px;margin:12px 0;background:#fff}
+.rhead {align-items:flex-start}
+.rhead span:first-child {font-weight:650;font-size:14px;line-height:1.5}
+.result details {border-top:1px solid #edf1ec;margin-top:11px;padding-top:10px}
+.proof>div {background:#f1f7f3;padding:14px;border-radius:9px}
+.proof code {font-size:14px;color:#1b5b44;font-weight:650}
+.badge {font-weight:750}
+.limitation {font-size:12px;color:#728279;margin-top:15px;line-height:1.6}
+.help {padding:17px 22px;margin-top:18px;background:#f5f8f5}
+.help p {margin:9px 0}
+dialog {border-radius:17px;padding:26px;box-shadow:0 20px 65px #0d302d44}
+dialog label {margin:10px 0}
+.dialogIntro {color:#64796e;font-size:13px;margin:14px 0}
+.importLabel input {margin-top:5px}
+#entryRows {line-height:1.6;min-height:160px}
+#entryMessage:not(:empty) {padding:10px;background:#fff4df;border-radius:8px;margin-bottom:10px}
+button:focus-visible,.uploadZone:focus-visible {outline:3px solid #77af92;outline-offset:2px}
+@media(max-width:970px) {.hero {align-items:flex-start;flex-direction:column;padding:29px 27px}.heroActions {flex-direction:row;flex-wrap:wrap}.heroActions .localTrust {width:100%}.studioHead {align-items:flex-start;flex-direction:column}.modeSwitch {width:100%;max-width:400px}.modeSwitch button {flex:1}.sampleStrip {align-items:flex-start;flex-direction:column}}
+@media(max-width:720px) {main{padding:15px 11px 35px}.hero{border-radius:15px;padding:27px 20px}.hero h1{font-size:39px}.heroLead{font-size:14px}.heroActions{width:100%;gap:7px}.heroActions button{flex:1}.studioSection,.claimPanel{padding:20px 15px;border-radius:14px}.stepHeading{gap:10px}.stepNumber{width:34px;height:34px}.studioHead h2{font-size:20px}.sampleActions{width:100%;flex-wrap:wrap}.sampleActions select{flex:1}.uploadActions{width:100%}.uploadActions button{flex:1}.pair.single .card{max-width:100%}.cardHead{flex-direction:column;gap:10px}.cardHead .cardActions{width:100%;flex-wrap:wrap}.cardHead .cardActions button{flex:1}.claimPanel form{flex-direction:column;align-items:stretch}.claimPanel form button{width:100%}.resultsSection .studioHead #check{width:100%}header{min-height:64px}.brand{font-size:21px}.nav{padding:8px 10px}.heroBadges span{font-size:10px}}
