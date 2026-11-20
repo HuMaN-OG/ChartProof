@@ -49,7 +49,7 @@ try:
         page.screenshot(path=str(art/"workspace.png"), full_page=True)
         page.select_option("#scenario", "restyled")
         page.click("#load")
-        page.get_by_text("restyled.png · page 1", exact=True).wait_for()
+        page.get_by_text("restyled.png · Local OCR", exact=True).wait_for()
         threshold_claim = page.locator(".result").filter(has_text="at least 10 percentage points")
         threshold_claim.get_by_text("Verdict retained", exact=True).wait_for()
         assert "Outdated claim" not in page.locator("#claimList").inner_text()
